@@ -40,7 +40,7 @@ class _AnimalControlPageState extends State<AnimalControlPage>
 
   Future<List<AnimalControlEntityModel>> getAnimalControl() async {
     final response = await Dio().post(
-        'http://192.168.1.33:3000/api/animal/ListByAgribusiness',
+        'https://api.contigopecuario.com/api/animal/ListByAgribusiness',
         data: {"agribusinessId": "665f708679462e00083edcde"});
 
     return (response.data[0] as List)
@@ -50,7 +50,7 @@ class _AnimalControlPageState extends State<AnimalControlPage>
 
   Future<List<DeadAnimalControlEntityModel>> getDeadAnimalControl() async {
     final response = await Dio().post(
-        'http://192.168.1.33:3000/api/animal/ListDeadsByAgribusiness',
+        'https://api.contigopecuario.com/api/animal/ListDeadsByAgribusiness',
         data: {"agribusinessId": "665f708679462e00083edcde"});
 
     return (response.data[0] as List)
