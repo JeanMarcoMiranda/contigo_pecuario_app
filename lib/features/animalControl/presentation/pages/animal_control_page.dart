@@ -7,6 +7,7 @@ import 'package:contigo_pecuario/features/animalControl/presentation/widgets/ani
 import 'package:contigo_pecuario/features/animalControl/presentation/widgets/milk_drop_icon.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class AnimalControlPage extends StatefulWidget {
   const AnimalControlPage({super.key});
@@ -43,9 +44,13 @@ class _AnimalControlPageState extends State<AnimalControlPage>
         'https://api.contigopecuario.com/api/animal/ListByAgribusiness',
         data: {"agribusinessId": "665f708679462e00083edcde"});
 
-    return (response.data[0] as List)
-        .map((item) => AnimalControlEntityModel.fromJson(item))
-        .toList();
+    if (response.data is List) {
+      return (response.data as List)
+          .map((item) => AnimalControlEntityModel.fromJson(item))
+          .toList();
+    } else {
+      throw Exception('Unexpected response format');
+    }
   }
 
   Future<List<DeadAnimalControlEntityModel>> getDeadAnimalControl() async {
@@ -53,9 +58,13 @@ class _AnimalControlPageState extends State<AnimalControlPage>
         'https://api.contigopecuario.com/api/animal/ListDeadsByAgribusiness',
         data: {"agribusinessId": "665f708679462e00083edcde"});
 
-    return (response.data[0] as List)
-        .map((item) => DeadAnimalControlEntityModel.fromJson(item))
-        .toList();
+    if (response.data is List) {
+      return (response.data as List)
+          .map((item) => DeadAnimalControlEntityModel.fromJson(item))
+          .toList();
+    } else {
+      throw Exception('Unexpected response format');
+    }
   }
 
   @override

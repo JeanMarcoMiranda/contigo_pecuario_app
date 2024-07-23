@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AnimalControlSearchBar extends StatelessWidget {
-  AnimalControlSearchBar ({super.key});
+  AnimalControlSearchBar({super.key});
   final TextEditingController searchController = TextEditingController();
 
   @override
@@ -13,34 +13,38 @@ class AnimalControlSearchBar extends StatelessWidget {
           child: TextField(
             controller: searchController,
             decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.search),
-              hintText: 'Identificador',
-              border: OutlineInputBorder()
-            ),
+                prefixIcon: Icon(Icons.search),
+                hintText: 'Identificador',
+                border: OutlineInputBorder()),
           ),
         ),
         const SizedBox(width: 8),
-        Expanded(
+        Flexible(
           flex: 2,
-          child: ElevatedButton(
-            onPressed: () {
-              //TODO
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('Filtros'),
-                Image.asset(
-                  'assets/icons/filter.png',
-                  width: 18,
-                  height: 18,
-                  fit: BoxFit.fill,
-                  color: Color(0xFF153750),
-                )
-              ],
+          child: Container(
+            constraints: const BoxConstraints(
+                maxWidth: 120), // Ajusta el valor según sea necesario
+            child: ElevatedButton(
+              onPressed: () {
+                // TODO
+              },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('Filtros', style: TextStyle(fontSize: 12)),
+                  const SizedBox(width: 4),
+                  Image.asset(
+                    'assets/icons/filter.png',
+                    width: 14,
+                    height: 14,
+                    fit: BoxFit.fill,
+                    color: Color(0xFF153750),
+                  ),
+                ],
+              ),
             ),
           ),
-        )
+        ),
       ],
     );
   }
